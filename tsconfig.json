@@ -16,9 +16,6 @@
     "forceConsistentCasingInFileNames": true,
     "noImplicitAny": false,
     "strictBindCallApply": false,
-    "noFallthroughCasesInSwitch": false,
-    "paths": {
-      "@prisma-client": ["./generated/prisma"]
-    }
+    "noFallthroughCasesInSwitch": false
   }
 }
