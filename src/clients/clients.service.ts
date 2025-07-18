@@ -38,7 +38,12 @@ export class ClientsService {
       where.email = { contains: email, mode: 'insensitive' };
     }
 
-    return this.prisma.client.findMany({ where });
+    return this.prisma.client.findMany({
+      where,
+      include: {
+        sales: true,
+      },
+    });
   }
 
   async findOne(id: number) {

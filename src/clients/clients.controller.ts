@@ -28,8 +28,54 @@ export class ClientsController {
   }
 
   @Get()
-  findAll(@Query('name') name?: string, @Query('email') email?: string) {
-    return this.clientsService.findAll(name, email);
+  async findAll(@Query('name') name?: string, @Query('email') email?: string) {
+    const clients = await this.clientsService.findAll(name, email);
+
+    const transformedClients = clients.map((client, index) => {
+      const birthDateFormatted = new Date(client.birthDate)
+        .toISOString()
+        .split('T')[0];
+
+      const clientData = {
+        info: {
+          nomeCompleto: client.name,
+          detalhes: {
+            email: client.email,
+            nascimento: birthDateFormatted,
+          },
+        },
+        estatisticas: {
+          vendas: client.sales.map((sale) => ({
+            data: new Date(sale.saleDate).toISOString().split('T')[0],
+            valor: sale.value,
+          })),
+        },
+      };
+
+      if (index % 2 !== 0) {
+        return {
+          ...clientData,
+          duplicado: {
+            nomeCompleto: client.name,
+          },
+        };
+      }
+
+      return clientData;
+    });
+
+    return {
+      data: {
+        clientes: transformedClients,
+      },
+      meta: {
+        registroTotal: clients.length,
+        pagina: 1,
+      },
+      redundante: {
+        status: 'ok',
+      },
+    };
   }
 
   @Get(':id')
