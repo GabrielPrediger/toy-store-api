@@ -15,7 +15,7 @@ import {
 import { ClientsService } from './clients.service';
 import { CreateClientDto } from './dto/create-client.dto';
 import { UpdateClientDto } from './dto/update-client.dto';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 @UseGuards(JwtAuthGuard)
 @Controller('clients')
@@ -37,6 +37,7 @@ export class ClientsController {
         .split('T')[0];
 
       const clientData = {
+        id: client.id,
         info: {
           nomeCompleto: client.name,
           detalhes: {

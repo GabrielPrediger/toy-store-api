@@ -6,7 +6,7 @@ import {
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateClientDto } from './dto/create-client.dto';
 import { UpdateClientDto } from './dto/update-client.dto';
-import { Prisma } from '@prisma-client';
+import { Prisma } from '@prisma/client';
 
 @Injectable()
 export class ClientsService {
@@ -14,7 +14,13 @@ export class ClientsService {
 
   async create(createClientDto: CreateClientDto) {
     try {
-      return await this.prisma.client.create({ data: createClientDto });
+      return await this.prisma.client.create({
+        data: {
+          name: createClientDto.name,
+          email: createClientDto.email,
+          birthDate: new Date(createClientDto.birthDate),
+        },
+      });
     } catch (error) {
       if (
         error instanceof Prisma.PrismaClientKnownRequestError &&
@@ -63,7 +69,12 @@ export class ClientsService {
     try {
       return await this.prisma.client.update({
         where: { id },
-        data: updateClientDto,
+        data: {
+          ...updateClientDto,
+          birthDate: updateClientDto.birthDate
+            ? new Date(updateClientDto.birthDate)
+            : undefined,
+        },
       });
     } catch (error) {
       if (
