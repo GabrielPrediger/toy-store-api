@@ -1,7 +1,7 @@
 import { Controller, Post, Body, ConflictException } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
-import { Prisma } from '@prisma-client';
+import { Prisma } from '@prisma/client';
 
 @Controller('users')
 export class UsersController {

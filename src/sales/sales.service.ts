@@ -1,8 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateSaleDto } from './dto/create-sale.dto';
-import { PrismaService } from 'src/prisma/prisma.service';
-import { Prisma } from '@prisma-client';
+import { Client, Prisma } from '@prisma/client';
 import { ClientStat } from './@types';
+import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
 export class SalesService {
@@ -11,7 +11,7 @@ export class SalesService {
   async create(createSaleDto: CreateSaleDto) {
     const { clientId, value, saleDate } = createSaleDto;
 
-    const clientExists = await this.prisma.client.findUnique({
+    const clientExists: Client | null = await this.prisma.client.findUnique({
       where: { id: clientId },
     });
 
