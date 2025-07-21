@@ -98,27 +98,27 @@ A API estará disponível em `http://localhost:3000`.
 
 2. Prepare o banco de teste:
 
-   ```bash
-   ```
-
 # Migrações
 
+   ```bash
 npm run test\:migrate
-
+```
 # Seed
 
+   ```bash
 npm run test\:seed
-
-````
+```
 
 3. Rodar os testes:
 
-   ```bash
 # Todos (Unit e E2E)
+   ```bash
 npm test
+```
 # Apenas E2E
+   ```bash
 npm run test:e2e
-````
+```
 
 ## 8. Endpoints
 
