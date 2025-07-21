@@ -25,6 +25,7 @@
   "include": [
     "src",
     "test",
+    "prisma/seed.ts",
     "jest.config.js",
     "test/setup-e2e.ts",
     "test/app.e2e-spec.ts",

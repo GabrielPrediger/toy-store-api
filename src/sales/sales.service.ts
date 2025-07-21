@@ -75,7 +75,6 @@ export class SalesService {
       uniqueSaleDays: Number(stat.uniqueSaleDays),
     }));
 
-    // Agora, encontramos o melhor em cada categoria na nossa aplicação.
     const topClientByVolume = processedStats.reduce((prev, current) =>
       prev.totalVolume > current.totalVolume ? prev : current,
     );
