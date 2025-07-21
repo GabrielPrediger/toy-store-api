@@ -44,53 +44,49 @@ Este projeto consiste em uma API RESTful desenvolvida com **NestJS** para gerenc
 
 ### Passo a Passo
 
-1. Clone o repositório:
+1.  Clone o repositório e acesse a pasta do projeto:
 
-   ```bash
-   ```
+    ```bash
+    git clone [https://github.com/GabrielPrediger/test-backend.git](https://github.com/GabrielPrediger/test-backend.git)
+    cd test-backend
+    ```
 
-git clone [https://github.com/GabrielPrediger/test-backend.git](https://github.com/GabrielPrediger/test-backend.git)
-cd test-backend
+2.  Instale as dependências:
 
-````
+    ```bash
+    npm install
+    ```
 
-2. Instale as dependências:
+3.  Configure as variáveis de ambiente:
+    * Crie o arquivo `.env` na raiz do projeto, baseando-se no `.env.example`:
 
-   ```bash
-npm install
-````
+    ```env
+    DATABASE_URL="postgresql://USUARIO:SENHA@HOST:PORTA/NOME_BANCO?schema=public"
+    JWT_SECRET="SEU_SEGREDO_SUPER_SECRETO"
+    JWT_EXPIRES_IN=3600s
+    ```
 
-3. Configure as variáveis de ambiente:
+4.  Execute as migrações do banco de dados e popule com os dados iniciais (`seed`):
 
-   * Crie o arquivo `.env` na raiz com base no `.env.example`:
+    ```bash
+    # Aplica as migrações para criar as tabelas no banco
+    npx prisma migrate dev
 
-   ```env
-   DATABASE_URL="postgresql://USUARIO:SENHA@HOST:PORTA/NOME_BANCO?schema=public"
-   JWT_SECRET="SEU_SEGREDO_SUPER_SECRETO"
-   JWT_EXPIRES_IN=3600s
-   ```
+    # Executa o script para popular o banco com dados iniciais
+    npx prisma db seed
+    ```
 
-4. Execute migrações e seed:
-
-   ```bash
-   ```
-
-npx prisma migrate dev
-npx prisma db seed
-
-````
-
-   - **Usuário administrador**:
-     - Email: `admin@lojadebrinquedos.com`
-     - Senha: `senha123`
+    * **Usuário administrador criado pelo `seed`**:
+        * **Email**: `admin@lojadebrinquedos.com`
+        * **Senha**: `senha123`
 
 ## 6. Executando a Aplicação
 
-Para iniciar o servidor em modo desenvolvimento com hot-reload:
+Para iniciar o servidor em modo de desenvolvimento com hot-reload:
 
 ```bash
 npm run start:dev
-````
+```
 
 A API estará disponível em `http://localhost:3000`.
 
