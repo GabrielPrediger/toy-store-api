@@ -47,8 +47,8 @@ Este projeto consiste em uma API RESTful desenvolvida com **NestJS** para gerenc
 1.  Clone o repositório e acesse a pasta do projeto:
 
     ```bash
-    git clone [https://github.com/GabrielPrediger/test-backend.git](https://github.com/GabrielPrediger/test-backend.git)
-    cd test-backend
+    git clone [https://github.com/GabrielPrediger/toy-store-api.git](https://github.com/GabrielPrediger/toy-store-api.git)
+    cd toy-store-api
     ```
 
 2.  Instale as dependências:
